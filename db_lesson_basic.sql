@@ -1,6 +1,6 @@
 Q1
 
-MariaDB [db_lesson]> CREATE TABLE `departments` (
+CREATE TABLE `departments` (
 department_id INT UNSIGNED AUTO_INCREMENT,
 name VARCHAR(20),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -8,17 +8,17 @@ updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY (department_id)
 );
 
-MariaDB [db_lesson]> ALTER TABLE departments MODIFY name VARCHAR(20) NOT NULL;
+ALTER TABLE departments MODIFY name VARCHAR(20) NOT NULL;
 
 Q2
-MariaDB [db_lesson]> ALTER TABLE people
+ALTER TABLE people
 ADD COLUMN  department_id int(10) unsigned AFTER email;
 
 Q3
-MariaDB [db_lesson]> INSERT INTO departments (name)
+INSERT INTO departments (name)
 VALUES ('営業'), ('開発'), ('経理'), ('人事'), ('情報システム');
 
-MariaDB [db_lesson]> INSERT INTO people (name, email, department_id, age, gender)
+INSERT INTO people (name, email, department_id, age, gender)
 VALUES
 ('安達慶', 'adachi@gizumo.jp', 1, 25, 2),
 ('井上瑞樹', 'inoue@gizumo.jp', 1, 24, 1),
@@ -31,7 +31,7 @@ VALUES
 ('佐藤隆', 'takahashi@gizumo.jp', 4, 23, 1),
 ('東海斗', 'azuma@gizumo.jp', 5, 23, 1);
 
-MariaDB [db_lesson]> INSERT INTO reports (person_id, content)
+INSERT INTO reports (person_id, content)
 VALUES
 (7, 'プードル'),
 (8, '青い鳥'),
@@ -45,19 +45,18 @@ VALUES
 (16, 'キリン');
 
 Q4
-MariaDB [db_lesson]> UPDATE people
+UPDATE people
 SET department_id = 1
 WHERE department_id IS NULL;
 
 
 Q5
-MariaDB [db_lesson]> SELECT name, age
+SELECT name, age
 FROM people WHERE gender = '1' ORDER BY age DESC;
 
 
 Q6
-MariaDB [db_lesson]> SELECT
-`name`, `email`, `age`
+SELECT `name`, `email`, `age`
 FROM `people` WHERE `department_id` = 1 ORDER BY `created_at`;
 
 
@@ -65,19 +64,19 @@ peopleテーブルからdepartment_idレコードのカラム１を選択し、�
 ascは省略できる
 
 Q7
-MariaDB [db_lesson]> select name from people
+select name from people
 where age between 20 and 29 and gender = '2'
 or age between 40 and 49 and gender = '1';
 
 Q8
-MariaDB [db_lesson]> select name,age from people where department_id = '1' order by  age asc;
+select name,age from people where department_id = '1' order by  age asc;
 
 Q9
-MariaDB [db_lesson]> select age as average_age from people where department_id = '2'
+select age as average_age from people where department_id = '2'
 and gender = '2';
 
 Q10
-MariaDB [db_lesson]> SELECT p.name,
+SELECT p.name,
 d.name AS departments_name,
 r.content AS reports_content
 from people p
@@ -85,7 +84,7 @@ join departments d ON p.department_id = d.department_id
 join reports r ON p.person_id = r.person_id;
 
 Q11
-MariaDB [db_lesson]> select p.name from people p
+select p.name from people p
 left join reports r on p.person_id = r.person_id
 where r.content IS NULL;
 
