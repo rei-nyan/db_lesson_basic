@@ -60,7 +60,7 @@ SELECT `name`, `email`, `age`
 FROM `people` WHERE `department_id` = 1 ORDER BY `created_at`;
 
 
-peopleテーブルからdepartment_idレコードのカラム１を選択し、昇順で並べる
+peopleテーブルからdepartment_idが1になっているレコードのうち、カラムがname、email、ageを追加した日付が早い順に取得する。
 ascは省略できる
 
 Q7
